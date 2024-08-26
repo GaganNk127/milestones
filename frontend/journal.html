@@ -1,0 +1,104 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Journal Entries</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .entry {
+            border-bottom: 1px solid #ccc;
+            padding: 10px 0;
+        }
+        .entry:last-child {
+            border-bottom: none;
+        }
+        .entry h2 {
+            margin: 0;
+            color: #555;
+        }
+        .entry p {
+            margin: 5px 0 0 0;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>My Journal Entries</h1>
+        <div id="entries"></div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const token = localStorage.getItem('token');
+
+            try {
+                const response = await fetch('http://localhost:5001/api/journal/entry', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+
+                if (response.ok) {
+                    const entries = await response.json();
+                    displayEntries(entries);
+                } else {
+                    const error = await response.text();
+                    alert(`Error: ${error}`);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('An error occurred while fetching the journal entries.');
+            }
+        });
+
+        function displayEntries(entries) {
+            const entriesContainer = document.getElementById('entries');
+            entries.forEach(entry => {
+                console.log(entry);
+                const entryDiv = document.createElement('div');
+                entryDiv.className = 'entry';
+
+                const entryDate = new Date(entry.date);
+        const formattedDate = entryDate.toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+        });
+
+        const entryTitle = document.createElement('h2');
+        entryTitle.textContent = formattedDate;
+
+                const entryContent = document.createElement('p');
+                entryContent.textContent = entry.entry;
+
+                entryDiv.appendChild(entryTitle);
+                entryDiv.appendChild(entryContent);
+                entriesContainer.appendChild(entryDiv);
+            });
+        }
+    </script>
+</body>
+</html>

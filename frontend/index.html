@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Mental Milestone</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+   
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card mt-5">
+                    <div class="card-body">
+                        <h3 class="card-title text-center">Login</h3>
+                        <form id="login-form">
+                            <div class="form-group">
+                                <label for="login-email">Email address</label>
+                                <input type="email" class="form-control" id="login-email" placeholder="Enter email">
+                            </div>
+                            <div class="form-group">
+                                <label for="login-password">Password</label>
+                                <input type="password" class="form-control" id="login-password" placeholder="Password">
+                            </div>
+                            <button type="submit" class="btn btn-success btn-block">Login</button>
+                            <p class="mt-3 text-center">Don't have an account? <a href="#" onclick="toggleForm()">Register here</a></p>
+
+                            <center><div id="message" style="color: red;"></div></center></form>
+                        </form>
+                        <form id="register-form" style="display: none;">
+                            <h3 class="card-title text-center" id="form-title">Register</h3>
+                            <div class="form-group">
+                                <label for="register-email">Email address</label>
+                                <input type="email" class="form-control" id="register-email" placeholder="Enter email">
+                            </div>
+                            <div class="form-group">
+                                <label for="guide-email">Guide Email address</label>
+                                <input type="email" class="form-control" id="guide-email" placeholder="Enter guide email">
+                            </div>
+                            <div class="form-group">
+                                <label for="register-password">Password</label>
+                                <input type="password" class="form-control" id="register-password" placeholder="Password">
+                            </div>
+                            <div class="form-group">
+                                <label for="confirm-password">Confirm Password</label>
+                                <input type="password" class="form-control" id="confirm-password" placeholder="Confirm Password">
+                            </div>
+                            <button type="submit" class="btn btn-success btn-block">Register</button>
+                            <p class="mt-3 text-center">Already have an account? <a href="#" onclick="toggleForm()">Login here</a></p>
+                            <center><div id="message" style="color: red;"></div></center>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="scripts.js"></script>
+</body>
+</html>
